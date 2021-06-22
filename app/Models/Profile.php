@@ -14,7 +14,6 @@ class Profile extends Model
         'gender',
         'birth_date',
         'address',
-        'photo',
         'is_active',
         'created_by',
         'updated_by',
