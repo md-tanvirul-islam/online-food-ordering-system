@@ -14,7 +14,7 @@ class Food extends Model
         'category_id',
         'description',
         'price',
-        'discount',
+        'discount_in_percent',
         'is_active',
         'created_by',
         'updated_by',
