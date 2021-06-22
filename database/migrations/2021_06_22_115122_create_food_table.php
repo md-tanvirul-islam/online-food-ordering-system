@@ -19,7 +19,7 @@ class CreateFoodTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->text('description')->nullable();
             $table->string('price');
-            $table->string('discount')->nullable();
+            $table->string('discount_in_percent')->nullable();
             $table->boolean('is_active')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
