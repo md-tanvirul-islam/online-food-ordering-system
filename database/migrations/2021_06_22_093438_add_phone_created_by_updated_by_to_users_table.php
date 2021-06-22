@@ -15,7 +15,7 @@ class AddPhoneCreatedByUpdatedByToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone',20)->nullable()->after('email');
-            $table->boolean('is_active')->default(0);
+            $table->boolean('is_active')->default(1);
             $table->unsignedBigInteger('created_by')->nullable()->after('remember_token');
             $table->unsignedBigInteger('updated_by')->nullable()->after('created_by');
         });

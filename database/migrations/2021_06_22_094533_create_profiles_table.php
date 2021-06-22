@@ -19,8 +19,7 @@ class CreateProfilesTable extends Migration
             $table->string('gender',10)->nullable();
             $table->date('birth_date')->nullable();
             $table->json('address')->nullable();
-            $table->string('photo')->nullable();
-            $table->boolean('is_active')->default(0);
+            $table->boolean('is_active')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
