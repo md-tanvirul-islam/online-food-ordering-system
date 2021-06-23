@@ -16,4 +16,9 @@ class Category extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function food()
+    {
+        return $this->hasMany(Food::class);
+    }
 }

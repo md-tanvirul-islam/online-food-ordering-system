@@ -4,7 +4,7 @@
 
         <button type="button" class="close" data-dismiss="alert">×</button>
 
-        <strong>{{ $message }}</strong>
+        {{ $message }}
 
     </div>
 
@@ -18,7 +18,7 @@
 
         <button type="button" class="close" data-dismiss="alert">×</button>
 
-        <strong>{{ $message }}</strong>
+        {{ $message }}
 
     </div>
 
@@ -32,7 +32,7 @@
 
         <button type="button" class="close" data-dismiss="alert">×</button>
 
-        <strong>{{ $message }}</strong>
+        {{ $message }}
 
     </div>
 
@@ -45,8 +45,8 @@
     <div class="alert alert-info alert-block">
 
         <button type="button" class="close" data-dismiss="alert">×</button>
-
-        <strong>{{ $message }}</strong>
+        
+        {{ $message }}
 
     </div>
 

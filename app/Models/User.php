@@ -45,4 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function foodInCart()
+    {
+        return $this->hasMany(Cart::class,'user_id','id');
+    }
+    
 }

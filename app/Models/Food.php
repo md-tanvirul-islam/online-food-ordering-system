@@ -19,4 +19,14 @@ class Food extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }
