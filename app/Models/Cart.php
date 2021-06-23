@@ -27,7 +27,7 @@ class Cart extends Model
         return $discountPrice;
     }
 
-    public static function authUserFoodPrice()
+    public static function authUserFoodTotalPrice()
     {
         $total_price = 0;
         $allFood_id = self::where('user_id','=', Auth::user()->id)->pluck('food_id');

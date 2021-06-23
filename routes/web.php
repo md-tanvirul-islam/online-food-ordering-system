@@ -30,6 +30,8 @@ Route::get('category/{category}', [App\Http\Controllers\GeneralController::class
 Route::middleware(['auth'])->group(function () {
     Route::get('add_to_cart/{food}', [App\Http\Controllers\GeneralController::class, 'addToCart'])->name('add.to.cart');
     Route::get('cart', [App\Http\Controllers\GeneralController::class, 'cart'])->name('cart');;
+    Route::get('checkout', [App\Http\Controllers\GeneralController::class, 'cartCheckout'])->name('cart.checkout');;
+    Route::post('order', [App\Http\Controllers\GeneralController::class, 'order'])->name('cart.order');;
 
 });
 //Routes for Admin ............
@@ -47,5 +49,5 @@ Route::get('testing', function () {
     //     ]);
     // }
     // dd('ok');
-    dd(\App\Models\Cart::authUserFoodPrice());
+    dd(\App\Models\Cart::authUserFoodTotalPrice());
 });

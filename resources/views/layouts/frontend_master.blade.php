@@ -45,7 +45,7 @@
                         <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span>{{ \App\Models\Cart::authUserNoFood() }}</span></a></li> 
                     @endauth
                 </ul>
-                <div class="header__cart__price">item: <span>${{ \App\Models\Cart::authUserFoodPrice() }}</span></div>
+                <div class="header__cart__price">item: <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></div>
             </div>
             <div class="humberger__menu__widget">
                 <div class="header__top__right__language">
@@ -187,7 +187,7 @@
                                     <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
                                     <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span>{{ \App\Models\Cart::authUserNoFood() }}</span></a></li>
                                 </ul>
-                                <div class="header__cart__price">item: <span>${{ \App\Models\Cart::authUserFoodPrice() }}</span></div>
+                                <div class="header__cart__price">item: <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></div>
                             </div>
                         </div> 
                     @endauth

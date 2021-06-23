@@ -75,6 +75,7 @@
                             <thead>
                                 <tr>
                                     <th class="shoping__product">Products</th>
+                                    <th>Restaurant</th>
                                     <th>Price</th>
                                     {{-- <th>Quantity</th> --}}
                                     <th>Discount(%)</th>
@@ -92,6 +93,7 @@
                                         <img src="{{ asset('ui/frontend/img/cart/cart-1.jpg') }}" alt="">
                                         <h5>{{ $food->name }}</h5>
                                     </td>
+                                    <td class="shoping__cart__quantity">{{ $food->restaurant->name }}</td>
                                     <td class="shoping__cart__price">
                                         {{ $food->price }}
                                     </td>
@@ -122,14 +124,14 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="shoping__cart__btns">
+                    {{-- <div class="shoping__cart__btns">
                         <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
                         <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
                             Upadate Cart</a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-6">
-                    <div class="shoping__continue">
+                    {{-- <div class="shoping__continue">
                         <div class="shoping__discount">
                             <h5>Discount Codes</h5>
                             <form action="#">
@@ -137,16 +139,16 @@
                                 <button type="submit" class="site-btn">APPLY COUPON</button>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>${{ \App\Models\Cart::authUserFoodPrice() }}</span></li>
-                            <li>Total <span>${{ \App\Models\Cart::authUserFoodPrice() }}</span></li>
+                            <li>Subtotal <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></li>
+                            <li>Total <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{{ route('cart.checkout') }}" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
