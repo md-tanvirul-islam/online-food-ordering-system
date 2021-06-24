@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
 
 });
 //Routes for backend ............
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','routeForAM'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'backendIndex'])->name('backend.index');
     Route::resources([
         'roles'             => App\Http\Controllers\RoleController::class,
