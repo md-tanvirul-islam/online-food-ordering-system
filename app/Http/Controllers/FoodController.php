@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Food;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
@@ -14,7 +15,15 @@ class FoodController extends Controller
      */
     public function index()
     {
-        //
+        abort_if(! Auth::user()->can('food-list'), 403);
+
+        if(Auth::user()->hasRole('admin')){
+            $food = Food::paginate(15);
+        }
+        else{
+            $food = Food::where('restaurant_id', '=', Auth::user()->restaurant->id)->paginate(15);
+        } 
+        return view('backend.crud.food.index',compact('food'));
     }
 
     /**
@@ -24,7 +33,10 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+        abort_if(! Auth::user()->can('food-create'), 403);
+
+        return view('backend.crud.food.create');
+        
     }
 
     /**
@@ -35,7 +47,8 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        abort_if(! Auth::user()->can('food-store'), 403);
+        
     }
 
     /**
@@ -46,7 +59,9 @@ class FoodController extends Controller
      */
     public function show(Food $food)
     {
-        //
+        abort_if(! Auth::user()->can('food-show'), 403);
+        
+        return view('backend.crud.food.show',compact('food'));
     }
 
     /**
@@ -57,7 +72,9 @@ class FoodController extends Controller
      */
     public function edit(Food $food)
     {
-        //
+        abort_if(! Auth::user()->can('food-edit'), 403);
+
+        return view('backend.crud.food.edit',compact('food'));
     }
 
     /**
@@ -69,7 +86,8 @@ class FoodController extends Controller
      */
     public function update(Request $request, Food $food)
     {
-        //
+        abort_if(! Auth::user()->can('food-update'), 403);
+        
     }
 
     /**
@@ -80,6 +98,6 @@ class FoodController extends Controller
      */
     public function destroy(Food $food)
     {
-        //
+        abort_if(! Auth::user()->can('food-delete'), 403);
     }
 }

@@ -47,7 +47,7 @@
                     @hasrole('admin')
                         <a class="collapse-item" href="{{route('roles.index')}}">Roles </a>
 
-                        <a class="collapse-item" href="{{route('permission.index')}}">Permission </a>
+                        <a class="collapse-item" href="{{route('permissions.index')}}">Permission </a>
 
                         <a class="collapse-item" href="{{route('restaurants.index')}}">Restaurants </a>
 

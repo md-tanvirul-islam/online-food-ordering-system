@@ -18,6 +18,10 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('ui/backend') }}/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <link href="{{ asset('ui/backend/css/dropzone.min.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('ui/backend/css/basic.min.css') }}" rel="stylesheet">
+
     @stack('css')
 </head>
 
@@ -83,6 +87,7 @@
 
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset('ui/backend') }}/jquery/jquery.min.js"></script>
+
 <script src="{{ asset('ui/backend') }}/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
@@ -90,6 +95,8 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('ui/backend') }}/js/sb-admin-2.min.js"></script>
+
+<script src="{{ asset('ui/backend/js/dropzone.min.js') }}"></script>
 
 @stack('js')
 
