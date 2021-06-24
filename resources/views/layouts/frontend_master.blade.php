@@ -38,15 +38,15 @@
             <div class="humberger__menu__logo">
                 <a href="#"><img src="{{ asset('ui/frontend/img/logo.png') }}" alt=""></a>
             </div>
-            <div class="humberger__menu__cart">
-                <ul>
-                    @auth
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span>{{ \App\Models\Cart::authUserNoFood() }}</span></a></li> 
-                    @endauth
-                </ul>
-                <div class="header__cart__price">item: <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></div>
-            </div>
+            @auth
+                <div class="humberger__menu__cart">
+                    <ul>
+                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span>{{ \App\Models\Cart::authUserNoFood() }}</span></a></li> 
+                    </ul>
+                    <div class="header__cart__price">item: <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></div>
+                </div>
+            @endauth
             <div class="humberger__menu__widget">
                 <div class="header__top__right__language">
                     <img src="{{ asset('ui/frontend/img/language.png') }}" alt="">

@@ -29,25 +29,27 @@ Route::get('category/{category}', [App\Http\Controllers\GeneralController::class
 
 Route::middleware(['auth'])->group(function () {
     Route::get('add_to_cart/{food}', [App\Http\Controllers\GeneralController::class, 'addToCart'])->name('add.to.cart');
-    Route::get('cart', [App\Http\Controllers\GeneralController::class, 'cart'])->name('cart');;
-    Route::get('checkout', [App\Http\Controllers\GeneralController::class, 'cartCheckout'])->name('cart.checkout');;
-    Route::post('order', [App\Http\Controllers\GeneralController::class, 'order'])->name('cart.order');;
+    Route::get('cart', [App\Http\Controllers\GeneralController::class, 'cart'])->name('cart');
+    Route::get('checkout', [App\Http\Controllers\GeneralController::class, 'cartCheckout'])->name('cart.checkout');
+    Route::post('order', [App\Http\Controllers\GeneralController::class, 'order'])->name('cart.order');
 
 });
-//Routes for Admin ............
-
-
-//Routes for  Manager ............
+//Routes for backend ............
+Route::middleware(['auth'])->group(function () {
+    Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'backendIndex'])->name('backend.index');
+    Route::resources([
+        'roles'             => App\Http\Controllers\RoleController::class,
+        'permissions'       => App\Http\Controllers\PermissionController::class,
+        'users'             => App\Http\Controllers\UserController::class,
+        'profiles'          => App\Http\Controllers\ProfileController::class,
+        'food_categories'   => App\Http\Controllers\CategoryController::class,
+        'restaurants'       => App\Http\Controllers\RestaurantController::class,
+        'food'              => App\Http\Controllers\FoodController::class,
+        'orders'            => App\Http\Controllers\OrderController::class,
+        'payments'          => App\Http\Controllers\PaymentController::class,
+    ]);
+});
 
 //Routes for  testing ............
 Route::get('testing', function () {
-    // $food_ids = Food::pluck('id'); 
-    // foreach($food_ids as $id){
-    //     $r_id = DB::table('food_restaurant')->where('food_id','=',$id)->pluck('restaurant_id')->first();
-    //     Food::where('id','=',$id)->update([
-    //         'restaurant_id' =>  $r_id,
-    //     ]);
-    // }
-    // dd('ok');
-    dd(\App\Models\Cart::authUserFoodTotalPrice());
 });

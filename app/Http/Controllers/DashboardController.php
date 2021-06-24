@@ -15,4 +15,9 @@ class DashboardController extends Controller
         $latestCategories = Category::where('is_active',1)->orderBy('id','asc')->limit(10)->pluck('name','id');
         return view('frontend.index',compact('categories','latestCategories', 'restaurants'));
     }
+
+    public function backendIndex()
+    {
+        return view('backend.dashboard.index');
+    }
 }
