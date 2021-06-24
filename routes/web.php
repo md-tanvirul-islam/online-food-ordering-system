@@ -26,6 +26,7 @@ Auth::routes();
 //Routes for General ............
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'frontendIndex'])->name('frontend.index');
 Route::get('category/{category}', [App\Http\Controllers\GeneralController::class, 'searchByCategory'])->name('searchBy.category');
+Route::get('restaurant', [App\Http\Controllers\GeneralController::class, 'searchByRestaurant'])->name('searchBy.restaurant');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('add_to_cart/{food}', [App\Http\Controllers\GeneralController::class, 'addToCart'])->name('add.to.cart');

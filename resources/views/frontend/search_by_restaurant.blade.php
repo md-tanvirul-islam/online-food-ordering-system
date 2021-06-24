@@ -4,15 +4,15 @@
 
 @section('content')
 
-        @include('frontend.partial.hero_section')     
-
+        @include('frontend.partial.hero_section')
+    
         <!-- Breadcrumb Section Begin -->
         <section class="breadcrumb-section set-bg" data-setbg="{{ asset('ui/frontend/img/breadcrumb.jpg') }}">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="breadcrumb__text">
-                            <h2>{{ $category->name }} Section</h2>
+                            <h2>{{ $restaurant->name }}</h2>
                         </div>
                     </div>
                 </div>
@@ -26,11 +26,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title related__product__title">
-                            <h2>Related cuisine</h2>
+                            <h2>All Cuisine</h2>
                         </div>
                     </div>
                 </div>
-                    @forelse ($category->food->chunk(4) as $four_food)
+                    @forelse ($restaurant->food->chunk(4) as $four_food)
                         <div class="row">
                             @foreach ($four_food as $food)
                                 @if($food->discount_in_percent)
@@ -45,7 +45,7 @@
                                                 </ul>
                                             </div>
                                             <div class="product__discount__item__text">
-                                                <span>{{ $food->restaurant->name }}</span>
+                                                {{-- <span>{{ $food->restaurant->name }}</span> --}}
                                                 <h5><a href="#">{{ $food->name }}</a></h5>
                                                 <div class="product__item__price">${{ round($food->price - ($food->price*($food->discount_in_percent/100))) }} <span>${{ $food->price }}</span></div>
                                             </div>
@@ -62,7 +62,7 @@
                                                 </ul>
                                             </div>
                                             <div class="product__discount__item__text">
-                                                <span>{{ $food->restaurant->name }}</span>
+                                                {{-- <span>{{ $food->restaurant->name }}</span> --}}
                                                 <h5><a href="#">{{ $food->name }}</a></h5>
                                                 <div class="product__item__price">${{ $food->price }} </div>
                                             </div>

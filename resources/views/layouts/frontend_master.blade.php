@@ -22,6 +22,11 @@
         <link rel="stylesheet" href="{{ asset('ui/frontend/css/slicknav.min.css') }}" type="text/css">
         <link rel="stylesheet" href="{{ asset('ui/frontend/css/style.css') }}" type="text/css">
         @stack('css')
+        <style>
+            a:hover {
+                color: black !important;
+            }
+        </style>
     </head>
     <body>
         <!-- Page Preloder -->
@@ -35,8 +40,9 @@
         <!-- Humberger Begin -->
         <div class="humberger__menu__overlay"></div>
         <div class="humberger__menu__wrapper">
-            <div class="humberger__menu__logo">
-                <a href="#"><img src="{{ asset('ui/frontend/img/logo.png') }}" alt=""></a>
+            <div class="humberger__menu__logo logo">
+                {{-- <img src="{{ asset('ui/frontend/img/logo.png') }}" alt=""> --}}
+                <a href="{{ route('frontend.index') }}"> <strong>FOODbird</strong></a>
             </div>
             @auth
                 <div class="humberger__menu__cart">
@@ -71,9 +77,9 @@
             <nav class="humberger__menu__nav mobile-menu">
                 <ul>
                     <li class="active"><a href="{{ route('frontend.index') }}">Home</a></li>
-                    <li><a href="#">Restaurants</a></li>
+                    {{-- <li><a href="#">Restaurants</a></li> --}}
                     <li><a href="{{ route('cart') }}">Cart</a></li>
-                    <li><a href="#">Contact</a></li>
+                    {{-- <li><a href="#">Contact</a></li> --}}
 
                     {{-- <li><a href="#">Pages</a>
                         <ul class="header__menu__dropdown">
@@ -155,17 +161,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="header__logo">
-                            <a href="{{ route('frontend.index') }}"><img src="{{ asset('ui/frontend/img/logo.png') }}" alt=""></a>
+                        <div class="header__logo text-center logo"> 
+                            {{-- <img src="{{ asset('ui/frontend/img/logo.png') }}" alt=""> --}}
+                            <a href="{{ route('frontend.index') }}"> <strong style="font-size: 30px"> FOODbird </strong> </a>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <nav class="header__menu">
                             <ul>
                                 <li class="active"><a href="{{ route('frontend.index') }}">Home</a></li>
-                                <li><a href="#">Restaurants</a></li>
+                                {{-- <li><a href="#">Restaurants</a></li> --}}
                                 <li><a href="{{ route('cart') }}">Cart</a></li>
-                                <li><a href="#">Contact</a></li>
+                                {{-- <li><a href="#">Contact</a></li> --}}
 
                                 {{-- <li><a href="#">Pages</a>
                                     <ul class="header__menu__dropdown">
@@ -208,7 +215,8 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="footer__about">
                             <div class="footer__about__logo">
-                                <a href="{{ route('frontend.index') }}"><img src="{{ asset('ui/frontend/img/logo.png') }}" alt=""></a>
+                                {{-- <img src="{{ asset('ui/frontend/img/logo.png') }}" alt=""> --}}
+                                <a href="{{ route('frontend.index') }}"><strong>FOODbird</strong></a>
                             </div>
                             <ul>
                                 <li>Address: 60-49 Road 11378 New York</li>
@@ -281,6 +289,11 @@
         <script src="{{ asset('ui/frontend/js/js.cookie-2.2.1.min.js') }}"></script>
         <script src="{{ asset('ui/frontend/js/main.js') }}"></script>
         @stack('js')
+        <script>
+            $(document).ready(function() {
+                $('.select-2').select2();
+            });
+        </script>
 
     </body>
 </html>

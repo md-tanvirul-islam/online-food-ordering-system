@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Food;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -17,8 +18,17 @@ class GeneralController extends Controller
 {
     public function searchByCategory(Category $category)
     {
-        $latestCategories = Category::where('is_active',1)->orderBy('id','asc')->limit(10)->pluck('name','id');
-        return view('frontend.search_by_category',compact('category','latestCategories'));
+        return view('frontend.search_by_category',compact('category'));
+    }
+
+    public function searchByRestaurant(Request $request)
+    {
+        $request->validate([
+            'ref' => 'required | integer'
+        ]);
+        $restaurant = Restaurant::find($request->ref);
+
+        return view('frontend.search_by_restaurant',compact('restaurant'));
     }
 
     public function addToCart(Food $food)
@@ -36,22 +46,18 @@ class GeneralController extends Controller
 
     public function cart()
     {
-        $latestCategories = Category::where('is_active',1)->orderBy('id','asc')->limit(10)->pluck('name','id');
-
         $foodIdsInCart = Cart::where('user_id','=', Auth::user()->id)->pluck('food_id');
 
-        return view('frontend.cart',compact('latestCategories','foodIdsInCart'));
+        return view('frontend.cart',compact('foodIdsInCart'));
     }
 
     public function cartCheckout()
     {
-        $latestCategories = Category::where('is_active',1)->orderBy('id','asc')->limit(10)->pluck('name','id');
-
         $authUser = Auth::user();
         
         $foodIdsInCart = Cart::where('user_id','=', Auth::user()->id)->pluck('food_id');
 
-        return view('frontend.checkout',compact('latestCategories','authUser','foodIdsInCart'));
+        return view('frontend.checkout',compact('authUser','foodIdsInCart'));
     }
 
     public function order(Request $request){

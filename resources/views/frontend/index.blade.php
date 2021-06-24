@@ -1,7 +1,6 @@
 @extends('layouts.frontend_master')
 
-@push('css')
-@endpush
+@include('frontend.partial.select_2_restaurant')
 
 @section('content')
     <!-- Hero Section Begin -->
@@ -29,17 +28,14 @@
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                            {{ Form::open(['route'=>'searchBy.restaurant','method'=>'GET']) }}
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        {{ Form::select('restaurant_id', $restaurants, null,['class'=>['form-control','select-2'], 'placeholder'=>'Select Restaurant']) }}
-                                    </div>
-                                    <div class="col-md-4">
-                                        {{ Form::select('category_id', $categories, null,['class'=>['form-control','select-2'], 'placeholder'=>'Select Category']) }}
+                                    <div class="col col-md col-sm ">
+                                        {{ Form::select('ref', $restaurants, null,['class'=>['form-control','select-2','select-height'], 'placeholder'=>'Select Restaurant']) }}
                                     </div>
                                     <button type="submit" class="site-btn">SEARCH</button>
                                 </div>
-                            </form>
+                            {{ Form::close() }}
                         </div>
                         <div class="hero__search__phone">
                             <div class="hero__search__phone__icon">
@@ -530,11 +526,3 @@
     </section>
     <!-- Blog Section End -->
 @endsection
-
-@push('js')
-    <script>
-        $(document).ready(function() {
-            $('.select-2').select2();
-        });
-    </script>
-@endpush
