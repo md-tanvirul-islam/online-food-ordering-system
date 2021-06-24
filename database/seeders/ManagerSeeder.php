@@ -82,10 +82,6 @@ class ManagerSeeder extends Seeder
                     'description' => $this->faker->text($maxNbChars = 200),
                     'price' => $this->faker->randomNumber(3),
                     'discount_in_percent' => $this->faker->numberBetween($min = 0, $max = 20),
-                ]);
-
-                DB::table('food_restaurant')->insert([
-                    'food_id' => $food->id,
                     'restaurant_id' => $restaurant->id,
                 ]);
             }
