@@ -1,114 +1,67 @@
-<div class="form-row">
-    <div class="col-md-4 mb-3">
-        <label for="name"><b>Enter Doctor Name:</b></label>
-        {!! Form::text('name',null,['class'=>'form-control','required','placeholder' => 'Doctor Name']) !!}
-    </div>
-    <div class="col-md-4 mb-3">
-        <label for="email"><b>Enter Email Name:</b></label>
-        {!! Form::text('email',null,['class'=>'form-control','required','placeholder' => 'Doctor Personal Email']) !!}
-    </div>
-    <div class="col-md-4 mb-3">
-        <label for="department_id"><b>Department:</b></label>
-        {!! Form::select('department_id',['a','b'],Null,['placeholder'=>'Select One','class'=>'form-control','required'] )!!}
-    </div>
-</div>
+@role('admin')
+    <div class="form-row">
+        <div class="col-md-12 col-sm-6 mb-6">
+            <label for="restaurant_id"><b>Select Restaurant:</b></label>
+            {!! Form::select('restaurant_id',restaurants(),Null,['placeholder'=>'Select One','class'=>['form-control','select-2']] )!!}
+        </div>
+    </div><br>
+@endrole
+
+@role('manager')
+    <div class="form-row d-none">
+        <div class="col-md-12 col-sm mb-6">
+            {!! Form::select('restaurant_id',restaurants(),Auth::user()->restaurant->id,['placeholder'=>'Select One','class'=>['form-control','select-2']] )!!}
+        </div>
+    </div><br>
+@endrole
 
 <div class="form-row">
-    <div class="col-md-8 mb-3">
-        <label for="address"><b> Address:</b></label>
-        {!! Form::text('address',null,['class'=>'form-control','required','placeholder' => "Doctor's Address"]) !!}
+    <div class="col-md-6 col-sm-6 mb-4">
+        <label for="name"><b>Enter Food Name:</b></label>
+        {!! Form::text('name',null,['class'=>'form-control','required','placeholder' => 'e.g. Cheese Burger']) !!}
     </div>
-    <div class="col-md-4 mb-3">
-        <label for="email"><b>Date of Birth:</b></label>
-        {!! Form::date('birthDate',null,['class'=>'form-control','required']) !!}
-    </div>
-</div>
-<small> Contract Numbers </small>
-<div class="form-row">
-    <div class="col-md-6 mb-3">
-        <label for="mobileNo"> <b>Phone Number:</b></label>
-        {!! Form::text('mobileNo',null,['class'=>'form-control','required','placeholder' => "Phone Number"]) !!}
-    </div>
-    <div class="col-md-6 mb-3">
-        <label for="phoneNo"><b>Telephone or Another Phone Number:</b></label>
-        {!! Form::text('phoneNo',null,['class'=>'form-control','required','placeholder' => "Telephone Number"]) !!}
+    <div class="col-md-6 col-sm-6 mb-4">
+        <label for="category_id"><b>Food Category:</b></label>
+        {!! Form::select('category_id',categories(),Null,['placeholder'=>'Select One','class'=>['form-control','select-2']] )!!}
     </div>
 </div>
 
 <div class="form-row">
     <div class="col-md-4 mb-3">
-        <label for="speciality"> <b>Specialities:</b></label>
-        {!! Form::text('speciality',null,['class'=>'form-control','required','placeholder' => "Doctor's Specialities"]) !!}
+        <label for="price"><b>Price($):</b></label>
+        {!! Form::text('price',null,['class'=>'form-control','required','placeholder' => 'e.g. 20']) !!}
     </div>
-    <div class="col-md-8 mb-3">
-        <label for="degree"><b>List the Doctor Degrees:</b></label>
-        {!! Form::text('degree',null,['class'=>'form-control','required','placeholder' => "Doctor's Professional Degrees"]) !!}
+    <div class="col-md-4 mb-3">
+        <label for="discount_in_percent"><b>Discount(%):</b></label>
+        {!! Form::text('discount_in_percent',null,['class'=>'form-control','required','placeholder' => 'e.g. 5']) !!}
     </div>
-</div>
-
-<div class="form-row">
-    <div class="col-md-6 mb-3">
-        <b>Gender:</b> <br>
+    <div class="col-md-4 mb-3">
+        <b>Status:</b> <br><br>
         <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" value="Male" name="gender"  
-                @if (\Route::currentRouteName()=== 'doctors.edit')  
-                    {{ $doctor->gender==='Male'?'checked':null }}                       
-                @endif>Male
+              <input type="radio" class="form-check-input" value="1" name="is_active"  
+                @if (\Route::currentRouteName()=== 'food.edit')  
+                    {{ $food->is_active == 1 ?'checked':null }}                       
+                @endif > Active
             </label>
         </div>
         <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" value="Female" name="gender"
-                @if (\Route::currentRouteName()=== 'doctors.edit')                
-                    {{ $doctor->gender==='Female'?'checked':null }}             
-                @endif>Female
+              <input type="radio" class="form-check-input" value="0" name="is_active"
+                @if (\Route::currentRouteName()=== 'food.edit')                
+                    {{ $food->is_active== 0 ?'checked':null }}             
+                @endif > Inactive
             </label>
         </div>
-        <div class="form-check-inline">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" value="Other" name="gender"
-                @if (\Route::currentRouteName()=== 'doctors.edit')                
-                    {{ $doctor->gender==='Other'?'checked':null }}             
-                @endif>
-              Other
-            </label>
-        </div>
-    </div>
-    <div class="col-md-6 mb-3">
-        <label for="bloodGroup"><b>Blood Group:</b></label>
-        {!! Form::select('bloodGroup',['A+'=>'A+','A-'=>'A-','B+'=>'B+','B-'=>'B-','AB+'=>'AB+','AB-'=>'AB-','O+'=>'O+','O-'=>'O-'],Null,['placeholder'=>'Select One','class'=>'form-control'] )!!}
     </div>
 </div>
 
 <div class="form-row">
     <div class="col-md-6 mb-3">
-        <small>Fees</small>
-        <div class="row">
-            <div class="col-md-12">
-                <label for="feeNew"> <b>New Patient Consultation Fee:</b></label>
-                {!! Form::text('feeNew',null,['class'=>'form-control','required','placeholder' => "New Patient Fee"]) !!}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <label for="feeInMonth"><b>Consultation Fee(in Same Month):</b></label>
-                {!! Form::text('feeInMonth',null,['class'=>'form-control','required','placeholder' => "Consultation Fee(in Same Month)"]) !!}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <label for="feeReport"><b>Consultation Fee for Report:</b></label>
-                {!! Form::text('feeReport',null,['class'=>'form-control','required','placeholder' => "Consultation Fee for Report"]) !!}
-            </div>
-        </div>
+        <label for="description"><b>Write a short note :</b></label>
+        {!! Form::textarea('description',null,['class'=>'form-control', 'rows'=>"7",'placeholder' => "Please describe the food in few words"]) !!}
     </div>
     <div class="col-md-6 mb-3">
-        <br>
-        <label for="bio"><b>Write a Short Bio about Doctor:</b></label>
-        {!! Form::textarea('bio',null,['class'=>'form-control', 'rows'=>"7",'placeholder' => "Short Bio about Doctor"]) !!}
-    </div>
-</div>
 
 
 

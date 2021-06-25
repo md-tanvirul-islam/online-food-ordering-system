@@ -22,6 +22,22 @@
 
     <link href="{{ asset('ui/backend/css/basic.min.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('ui/frontend/css/select2.min.css') }}" rel="stylesheet">
+
+    <style>
+        .select2-container--default .select2-selection--single {
+            height: 39px !important;
+            color: black !important;
+            border-color: black;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 39px;
+            color: black !important;
+            border-color: black;
+        }
+    </style>
+
     @stack('css')
 </head>
 
@@ -98,7 +114,15 @@
 
 <script src="{{ asset('ui/backend/js/dropzone.min.js') }}"></script>
 
+<script src="{{ asset('ui/frontend/js/select2.min.js') }}"></script>
+
 @stack('js')
+
+<script>
+    $(document).ready(function() {
+        $('.select-2').select2();
+    });
+</script>
 
 </body>
 

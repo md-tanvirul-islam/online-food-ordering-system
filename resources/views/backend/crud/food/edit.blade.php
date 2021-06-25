@@ -26,8 +26,8 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-9">
-                                    <h3 class="card-title">Edit the Doctor Account info </h3>
-                                    <p class="card-text"><small> Please enter valid doctor info</small></p>
+                                    <h3 class="card-title">Edit the Food info </h3>
+                                    <p class="card-text"><small> Please enter valid info</small></p>
                                 </div>
                                 <div class="col-3" style="text-align: right">
                                     <a class="btn btn-warning" style="color: black" href="{{route('food.index')}}" title="List of Departments">
@@ -44,38 +44,37 @@
                                         'method' => 'put'
                                         ]) !!}
 
-                                        
-                                    @include('backend.crud.food.form')
-        
+                                    @php $p_url = $food->getFirstMediaUrl('images'); @endphp
 
-                                        <div class="form-row">
-                                            <div class="col-3">
-                                                @if (isset($food->image))
-                                                <div> 
-                                                    {!! Form::label('image','Change the Profile photo:') !!}
-                                                </div>
-                                                @else
-                                                    <div> 
-                                                        {!! Form::label('image','Please Upload a Profile photo:') !!}
-                                                    </div>
-                                                @endif 
+                                    @include('backend.crud.food.form')
+
+                                            <!--after from blade code -->
+                                                <label><b>Uploaded photo:</b></label>  
+                                                @if($p_url !== '')
+                                                    <img src='{{ $p_url }}' style="width: 100%; height: auto" >  
+                                                @else 
+                                                    <p class="text-danger"> <b> No photo was uploaded for this food!! </b> </p>  
+                                                @endif
+
                                             </div>
-                                            <div class="col-5"> 
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                @if ($p_url !== '')
+                                                    <div>
+                                                        <label for="image"><b>Select a photo to change the uploaded photo:</b></label> 
+                                                    </div>
+                                                @else
+                                                    <div>
+                                                        <label for="image"><b>Please Upload a photo:</b></label>  
+                                                    </div>
+                                                @endif
                                                 {!! Form::file('image') !!}
                                             </div>
-                                            @if (isset($food->image))
-                                                <div class="col-4"> 
-                                                    <img src='{{ asset("$doctor->image") }}' style="width: 200px;height:300px" >
-                                                </div>
-                                            @else
-                                                <div class="col-4"> 
-                                                    <p class="text-danger"> <b> Profile Photo has not uploaded yet!! </b> </p>
-                                                </div>
-                                            @endif
                                         </div>
+                                        
                                         <br>
                                         <div class="form-row">
-                                           
                                             <div class="col-md-12 mb-3" style="text-align: center"> 
                                                 <button  style= "color:white" class="btn btn-info" > <i class="fa fa-paper-plane" aria-hidden="true"></i> Submit </button>
                                             </div>

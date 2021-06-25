@@ -8,3 +8,8 @@
     {
        return $restaurants = App\Models\Restaurant::where('is_active',1)->pluck('name','id');
     }
+
+    function categories()
+    {
+       return $categories = App\Models\Category::where('is_active',1)->pluck('name','id');
+    }

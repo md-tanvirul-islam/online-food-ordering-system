@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FoodStoreRequest;
+use App\Http\Requests\FoodUpdateRequest;
 use App\Models\Food;
+use App\Services\FoodService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class FoodController extends Controller
 {
+    private $foodService;
+
+    public function __construct(FoodService $foodService)
+    {
+        $this->foodService = $foodService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,10 +28,10 @@ class FoodController extends Controller
         abort_if(! Auth::user()->can('food-list'), 403);
 
         if(Auth::user()->hasRole('admin')){
-            $food = Food::paginate(15);
+            $food = Food::orderBy('id','desc')->paginate(15);
         }
         else{
-            $food = Food::where('restaurant_id', '=', Auth::user()->restaurant->id)->paginate(15);
+            $food = Food::orderBy('id','desc')->where('restaurant_id', '=', Auth::user()->restaurant->id)->paginate(15);
         } 
         return view('backend.crud.food.index',compact('food'));
     }
@@ -45,10 +55,15 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FoodStoreRequest $request)
     {
         abort_if(! Auth::user()->can('food-store'), 403);
         
+        $requestedData = $request->except('_token');
+
+        $food = $this->foodService->store($requestedData);      
+        
+        return Redirect::back()->withSuccess("$food->name is added");
     }
 
     /**
@@ -73,7 +88,7 @@ class FoodController extends Controller
     public function edit(Food $food)
     {
         abort_if(! Auth::user()->can('food-edit'), 403);
-
+        
         return view('backend.crud.food.edit',compact('food'));
     }
 
@@ -84,9 +99,15 @@ class FoodController extends Controller
      * @param  \App\Models\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Food $food)
+    public function update(FoodUpdateRequest $request, Food $food)
     {
         abort_if(! Auth::user()->can('food-update'), 403);
+    
+        $requestedData = $request->except('_token');
+
+        $food = $this->foodService->update($requestedData, $food);  
+        
+        return Redirect::back()->withSuccess("$food->name's info is updated");
         
     }
 
@@ -99,5 +120,9 @@ class FoodController extends Controller
     public function destroy(Food $food)
     {
         abort_if(! Auth::user()->can('food-delete'), 403);
+        
+        $food->delete();
+
+        return Redirect::back()->withSuccess("$food->name is deleted successfully");
     }
 }

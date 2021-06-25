@@ -51,7 +51,7 @@
                                         <form action="{{ route('food.destroy', [$fd->id]) }}" method="post" style="display: inline">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" title="Delete" disabled class="btn btn-danger" onclick="return confirm('Are you sure want to delete ?')">
+                                            <button type="submit" title="Delete" class="btn btn-danger" onclick="return confirm('Are you sure want to delete ?')">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             </button>
                                         </form>

@@ -39,20 +39,19 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm">
-                                    {!! Form::open(['route'=>'food.store','files'=>true]) !!}
+                                    {!! Form::open(['route'=>'food.store','files'=>true,'class'=>[]]) !!}
 
                                         
                                     @include('backend.crud.food.form')
         
 
-                                        <div class="form-row">
-                                            <div class="col-4 text-right">
-                                                {!! Form::label('image','Upload Food Image:') !!} 
-                                            </div>
-                                            <div class="col-4 text-right"> 
+                                                <label for="image"><b>Upload Food Image:</b></label> 
+                                                <br>
                                                 {!! Form::file('image') !!}
-                                            </div>
-                                        </div>
+
+                                                {{-- <div class="needsclick dropzone" id="document-dropzone"> --}}
+                                            </div> <!-- div for col in the form blade-->
+                                        </div> <!-- div for row in the form blade-->
                                         <br>
                                         <div class="form-row">
                                             <div class="col-md-12 mb-3" style="text-align: center"> 
@@ -68,3 +67,43 @@
         </div>
 
 @endsection
+
+{{-- @push('js')
+<script>
+    var uploadedDocumentMap = {}
+    Dropzone.options.documentDropzone = {
+      url: '{{ route('projects.storeMedia') }}',
+      maxFilesize: 2, // MB
+      addRemoveLinks: true,
+      headers: {
+        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+      },
+      success: function (file, response) {
+        $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+        uploadedDocumentMap[file.name] = response.name
+      },
+      removedfile: function (file) {
+        file.previewElement.remove()
+        var name = ''
+        if (typeof file.file_name !== 'undefined') {
+          name = file.file_name
+        } else {
+          name = uploadedDocumentMap[file.name]
+        }
+        $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+      },
+      init: function () {
+        @if(isset($project) && $project->document)
+          var files =
+            {!! json_encode($project->document) !!}
+          for (var i in files) {
+            var file = files[i]
+            this.options.addedfile.call(this, file)
+            file.previewElement.classList.add('dz-complete')
+            $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
+          }
+        @endif
+      }
+    }
+  </script>
+@endpush --}}
