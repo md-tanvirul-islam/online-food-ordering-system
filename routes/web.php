@@ -54,3 +54,6 @@ Route::middleware(['auth','routeForAM'])->group(function () {
 //Routes for  testing ............
 Route::get('testing', function () {
 });
+
+//for log
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('error.log');
