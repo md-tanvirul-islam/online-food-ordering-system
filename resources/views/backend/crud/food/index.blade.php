@@ -23,6 +23,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
+                            <th>Restaurant</th>
                             <th>Category</th>
                             <th>Price</th>
                             <th>Discount(%)</th>
@@ -35,8 +36,9 @@
                             @foreach($food as $fd)
                                 <tr>
                                     <td> {{ $loop->iteration }}</td>
-                                    <td>{{ $fd->name }}</td>
-                                    <td>{{ $fd->category->name }}</td>
+                                    <td>{{ $fd->name ?? '' }}</td>
+                                    <td>{{ $fd->restaurant->name ?? ''}}</td>
+                                    <td>{{ $fd->category->name  ?? ''}}</td>
                                     <td>${{ $fd->price }}</td>
                                     <td>{{ $fd->discount_in_percent }}</td>
                                     <td>{{ $fd->is_active ? 'Yes' : 'No'}}</td>

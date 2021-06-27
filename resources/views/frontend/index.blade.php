@@ -82,9 +82,9 @@
             <div class="row">
                 <div class="categories__slider owl-carousel">
                     @foreach(latestCategories(8) as $key => $value)
-                    <div class="col-lg-3">@php $category = App\Models\Category::find($key) @endphp
-                        <div class="categories__item set-bg" data-setbg="{{ $category->getFirstMediaUrl('images') !=='' ? $category->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}">
-                            <h5><a href="#">{{ $category->name }}</a></h5>
+                    <div class="col-lg-3">@php $category = App\Models\Category::find($key) @endphp 
+                        <div class="categories__item set-bg" data-setbg="{{ isset($category->getMedia('images')[0]) ? $category->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}">
+                        <h5><a href="{{ route('searchBy.category',[$category->id]) }}">{{ $category->name }}</a></h5> 
                         </div>
                     </div>
                     @endforeach
@@ -127,7 +127,7 @@
                                     @php $food = App\Models\Food::find($latestFoodIds[$a]) @endphp
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
+                                            <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $food->name }}</h6>
@@ -142,7 +142,7 @@
                                     @php $food = App\Models\Food::find($latestFoodIds[$b]) @endphp
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
+                                            <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $food->name }}</h6>
@@ -156,7 +156,7 @@
                                     @php $food = App\Models\Food::find($latestFoodIds[$c]) @endphp
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
+                                            <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $food->name }}</h6>
@@ -177,7 +177,7 @@
                                     @php $food = App\Models\Food::find($topDiscountFoodIds[$i]) @endphp
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
+                                                <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $food->name }}</h6>
@@ -192,7 +192,7 @@
                                     @php $food = App\Models\Food::find($topDiscountFoodIds[$j]) @endphp
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
+                                                <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $food->name }}</h6>
@@ -207,7 +207,7 @@
                                     @php $food = App\Models\Food::find($topDiscountFoodIds[$k]) @endphp
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
+                                                <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $food->name }}</h6>
@@ -228,7 +228,7 @@
                                     @php $food = App\Models\Food::find($latestFoodIds[$m]) @endphp
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
+                                            <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $food->name }}</h6>
@@ -243,7 +243,7 @@
                                     @php $food = App\Models\Food::find($latestFoodIds[$n]) @endphp
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
+                                            <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $food->name }}</h6>
@@ -257,7 +257,7 @@
                                     @php $food = App\Models\Food::find($latestFoodIds[$q]) @endphp
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
+                                            <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>{{ $food->name }}</h6>

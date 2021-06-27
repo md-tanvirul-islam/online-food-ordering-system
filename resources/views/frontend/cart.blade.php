@@ -2,6 +2,15 @@
 
 @include('frontend.partial.select_2_restaurant')
 
+@push('css')
+    <style>
+        img{
+            height: 100px !important;
+            width: 101px !important;
+        }
+    </style>
+@endpush
+
 @section('content')
 
     @include('frontend.partial.hero_section')
@@ -33,6 +42,7 @@
                                         <th>Restaurant</th>
                                         <th>Price</th>
                                         {{-- <th>Quantity</th> --}}
+                                        <th></th>
                                         <th>Discount(%)</th>
                                         <th>Total</th>
                                         <th></th>
@@ -41,24 +51,22 @@
                                 <tbody>
                                     @forelse ($foodIdsInCart as $id)
                                     <tr>
-                                        @php
-                                            $food = \App\Models\Food::find($id);
-                                        @endphp
+                                        @php $food = \App\Models\Food::find($id); @endphp
                                         <td class="shoping__cart__item">
-                                            <img src="{{ asset('ui/frontend/img/cart/cart-1.jpg') }}" alt="">
+                                            <img src="{{ isset($food->getMedia('images')[0]) ? $food->getMedia('images')[0]->getFullUrl() : asset('ui/frontend/img/photo_NA_110_110.png') }}" alt="">
                                             <h5>{{ $food->name }}</h5>
                                         </td>
                                         <td class="shoping__cart__quantity">{{ $food->restaurant->name }}</td>
                                         <td class="shoping__cart__price">
                                             {{ $food->price }}
                                         </td>
-                                        {{-- <td class="shoping__cart__quantity">
+                                        <td class="shoping__cart__quantity">
                                             <div class="quantity">
-                                                <div class="pro-qty">
+                                                {{-- <div class="pro-qty">
                                                     <input type="text" value="1">
-                                                </div>
+                                                </div> --}}
                                             </div>
-                                        </td> --}}
+                                        </td>
                                         <td class="shoping__cart__price">
                                             {{ $food->discount_in_percent }}
                                         </td>

@@ -46,7 +46,7 @@
                             </div>
                           </div>
                           <div class="col-8">
-                            @php $p_url = $food->getFirstMediaUrl('images'); @endphp
+                            @php isset($food->getMedia('images')[0]) ? $p_url = $food->getMedia('images')[0]->getFullUrl() : $p_url = ''; @endphp
 
                             <label><b>Uploaded photo:</b></label>  
 
