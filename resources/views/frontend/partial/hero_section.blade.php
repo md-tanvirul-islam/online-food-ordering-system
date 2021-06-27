@@ -9,12 +9,12 @@
                                 <span>Latest Categories</span>
                             </div>
                             <ul>
-                                @forelse (latestCategories() as $key => $value)
+                                @forelse (latestCategories(10) as $key => $value)
                                     <li><a href="{{ route('searchBy.category',[$key]) }}">{{ $value }}</a></li> 
                                 @empty
                                     <li><a href="#" class="text-danger">Please search by Restaurant </a></li> 
                                 @endforelse
-                                @if (count(latestCategories()))
+                                @if (count(latestCategories(10)))
                                     <li><a class="text-primary" href="#">All categories</a></li> 
                                 @endif
                             </ul>

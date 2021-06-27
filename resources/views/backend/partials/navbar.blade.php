@@ -51,7 +51,7 @@
 
                         <a class="collapse-item" href="{{route('restaurants.index')}}">Restaurants </a>
 
-                        <a class="collapse-item" href="{{route('food_categories.index')}}"> Food Categories </a>
+                        <a class="collapse-item" href="{{route('categories.index')}}"> Food Categories </a>
 
                         <a class="collapse-item" href="{{route('profiles.index')}}">Profiles </a>
                     @endhasrole
@@ -100,7 +100,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('food_categories.index')}}">
+                <a class="nav-link" href="{{route('categories.index')}}">
                     <i class='fas fa-directions'></i>
                     <span>Food Categories</span></a>
             </li>

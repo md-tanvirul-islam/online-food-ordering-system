@@ -43,7 +43,7 @@ Route::middleware(['auth','routeForAM'])->group(function () {
         'permissions'       => App\Http\Controllers\PermissionController::class,
         'users'             => App\Http\Controllers\UserController::class,
         'profiles'          => App\Http\Controllers\ProfileController::class,
-        'food_categories'   => App\Http\Controllers\CategoryController::class,
+        'categories'        => App\Http\Controllers\CategoryController::class,
         'restaurants'       => App\Http\Controllers\RestaurantController::class,
         'food'              => App\Http\Controllers\FoodController::class,
         'orders'            => App\Http\Controllers\OrderController::class,

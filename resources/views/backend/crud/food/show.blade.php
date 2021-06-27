@@ -23,6 +23,12 @@
                     <div class="card-body">
                         <div class="row">
                           <div class="col-4">
+                            @role('admin')
+                              <div class="row">
+                                <div class="col font-weight-bold">Restaurnat Name</div>
+                                <div class="col">:&nbsp{{ $food->restaurant->name }}</div>
+                              </div><hr>
+                            @endrole
                             <div class="row">
                               <div class="col font-weight-bold">Food Price($)</div>
                               <div class="col">:&nbsp{{ $food->price }}</div>

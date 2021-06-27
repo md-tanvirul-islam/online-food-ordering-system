@@ -17,10 +17,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->json('address');
-            $table->string('subtotal');
+            $table->float('subtotal');
             $table->string('coupon_code');
-            $table->string('discount_in_amount')->nullable();
-            $table->string('total')->nullable();
+            $table->float('discount_in_amount')->nullable();
+            $table->float('total')->nullable();
             $table->boolean('is_active')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
