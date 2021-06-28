@@ -1,6 +1,10 @@
 @extends('layouts.frontend_master')
 
-@include('frontend.partial.select_2_restaurant')
+@push('css')
+    @include('frontend.partial.select_2_restaurant')
+
+    @include('frontend.partial.add_to_cart_ajax_css')
+@endpush
 
 @section('content')
 
@@ -41,7 +45,7 @@
                                                 <div class="product__discount__percent">-{{ $food->discount_in_percent }}%</div>
                                                 <ul class="product__item__pic__hover">
                                                     <li><a ><i data-food-id={{ $food->id }} class="fa fa-heart"></i></a></li>
-                                                    <li><a href="{{ route('add.to.cart',[$food->id]) }}"><i data-food-id={{ $food->id }} class="fa fa-shopping-cart cart"></i></a></li>
+                                                    <li><a><i data-food-id={{ $food->id }} class="fa fa-shopping-cart cart add_to_cart_ajax"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="product__discount__item__text">
@@ -58,7 +62,7 @@
                                                 data-setbg="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}">
                                                 <ul class="product__item__pic__hover">
                                                     <li><a ><i data-food-id={{ $food->id }} class="fa fa-heart" ></i></a></li>
-                                                    <li><a href="{{ route('add.to.cart',[$food->id]) }}"><i data-food-id={{ $food->id }} class="fa fa-shopping-cart cart"></i></a></li>
+                                                    <li><a><i data-food-id={{ $food->id }} class="fa fa-shopping-cart cart add_to_cart_ajax"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="product__discount__item__text">
@@ -77,4 +81,9 @@
             </div>
         </section>
         <!-- Related Product Section End -->
+        @include('frontend.partial.add_to_cart_ajax_loader_html')
 @endsection
+
+@push('js')
+    @include('frontend.partial.add_to_cart_ajax_script');
+@endpush

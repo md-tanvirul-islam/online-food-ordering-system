@@ -27,6 +27,13 @@
                 color: black !important;
             }
         </style>
+        <script src="{{ asset('ui/frontend/js/jquery-3.3.1.min.js') }}"></script>
+        <script>
+            $(document).ready(function()
+            {
+                $(".loader").fadeOut("slow");
+            });
+        </script>
     </head>
     <body>
         <!-- Page Preloder -->
@@ -44,15 +51,15 @@
                 {{-- <img src="{{ asset('ui/frontend/img/logo.png') }}" alt=""> --}}
                 <a href="{{ route('frontend.index') }}"> <strong>FOODbird</strong></a>
             </div>
-            @auth
-                <div class="humberger__menu__cart">
-                    <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span>{{ \App\Models\Cart::authUserNoFood() }}</span></a></li> 
-                    </ul>
-                    <div class="header__cart__price">item: <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></div>
-                </div>
-            @endauth
+            
+            <div class="humberger__menu__cart">
+                <ul>
+                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                        <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span class="food-count"></span>0</a></li> 
+                </ul>
+                <div class="header__cart__price">item: <span class="food-total-price">$0</span></div>
+            </div>
+            
             <div class="humberger__menu__widget">
                 <div class="header__top__right__language">
                     <img src="{{ asset('ui/frontend/img/language.png') }}" alt="">
@@ -187,17 +194,17 @@
                             </ul>
                         </nav>
                     </div>
-                    @auth
-                        <div class="col-lg-3">
-                            <div class="header__cart">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
-                                    <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span>{{ \App\Models\Cart::authUserNoFood() }}</span></a></li>
-                                </ul>
-                                <div class="header__cart__price">item: <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></div>
-                            </div>
-                        </div> 
-                    @endauth
+                    
+                    <div class="col-lg-3">
+                        <div class="header__cart">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
+                                <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span class="food-count">0</span></a></li>
+                            </ul>
+                            <div class="header__cart__price">item: <span class="food-total-price"> $0 </span></div>
+                        </div>
+                    </div> 
+                    
                 </div>
                 <div class="humberger__open">
                     <i class="fa fa-bars"></i>
@@ -276,9 +283,10 @@
             </div>
         </footer>
         <!-- Footer Section End -->
+        <div class="modal"><!-- Place at bottom of page --></div>
+
 
         <!-- Js Plugins -->
-        <script src="{{ asset('ui/frontend/js/jquery-3.3.1.min.js') }}"></script>
         <script src="{{ asset('ui/frontend/js/bootstrap.min.js') }}"></script>
         {{-- <script src="{{ asset('ui/frontend/js/jquery.nice-select.min.js') }}"></script> --}}
         <script src="{{ asset('ui/frontend/js/select2.min.js') }}"></script>
@@ -294,6 +302,5 @@
                 $('.select-2').select2();
             });
         </script>
-
     </body>
 </html>

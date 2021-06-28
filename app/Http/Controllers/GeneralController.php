@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class GeneralController extends Controller
 {
@@ -33,20 +34,41 @@ class GeneralController extends Controller
 
     public function addToCart(Food $food)
     {
-        if(DB::table('carts')->where('user_id','=', Auth::user()->id)->where('food_id','=',$food->id)->first())
+        if(request()->session()->has('food_ids')){
+            $food_ids = request()->session()->get('food_ids');
+
+            $food_ids[] = $food->id;
+
+            request()->session()->forget('food_ids');
+        }else
         {
-            return redirect()->back()->withErrors("$food->name has already added in the cart");
+            $food_ids = array();
+            
+            $food_ids[] = $food->id;
         }
-        DB::table('carts')->insert([
-            'user_id' => Auth::user()->id,
-            'food_id' => $food->id
+
+        request()->session()->put('food_ids', $food_ids);
+
+        return response()->json([
+            'food_ids' => Session::get('food_ids'),
+            'food_count' => Food::foodCountInSession(),
+            'food_total_price' => Food::foodTotalPriceInSession(),
         ]);
-        return redirect()->back()->withSuccess("$food->name is added to the cart");
+
+        // if(DB::table('carts')->where('user_id','=', Auth::user()->id)->where('food_id','=',$food->id)->first())
+        // {
+        //     return redirect()->back()->withErrors("$food->name has already added in the cart");
+        // }
+        // DB::table('carts')->insert([
+        //     'user_id' => Auth::user()->id,
+        //     'food_id' => $food->id
+        // ]);
+        // return redirect()->back()->withSuccess("$food->name is added to the cart");
     }
 
     public function cart()
     {
-        $foodIdsInCart = Cart::where('user_id','=', Auth::user()->id)->pluck('food_id');
+        $foodIdsInCart = Session::get('food_ids',[]);
 
         return view('frontend.cart',compact('foodIdsInCart'));
     }

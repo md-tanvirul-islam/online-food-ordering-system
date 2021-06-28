@@ -1,7 +1,9 @@
 
 @extends('layouts.frontend_master')
 
-@include('frontend.partial.select_2_restaurant')
+@push('css')
+    @include('frontend.partial.select_2_restaurant')
+@endpush
 
 @section('content')
 

@@ -1,6 +1,10 @@
 @extends('layouts.frontend_master')
 
-@include('frontend.partial.select_2_restaurant')
+@push('css')
+    @include('frontend.partial.select_2_restaurant')
+
+    @include('frontend.partial.add_to_cart_ajax_css')
+@endpush
 
 @section('content')
 
@@ -77,4 +81,9 @@
             </div>
         </section>
         <!-- Related Product Section End -->
+        @include('frontend.partial.add_to_cart_ajax_loader_html')
 @endsection
+
+@push('js')
+    @include('frontend.partial.add_to_cart_ajax_script');
+@endpush

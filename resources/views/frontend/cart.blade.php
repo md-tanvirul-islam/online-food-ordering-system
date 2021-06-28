@@ -1,7 +1,5 @@
 @extends('layouts.frontend_master')
 
-@include('frontend.partial.select_2_restaurant')
-
 @push('css')
     <style>
         img{
@@ -9,6 +7,7 @@
             width: 101px !important;
         }
     </style>
+    @include('frontend.partial.select_2_restaurant')
 @endpush
 
 @section('content')

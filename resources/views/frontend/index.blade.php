@@ -1,14 +1,9 @@
 @extends('layouts.frontend_master')
 
-@include('frontend.partial.select_2_restaurant')
-
 @push('css')
-    <style>
-        /* .categories__slider
-        {
-            width: 110px !important;
-            height: 110px !important;
-        } */
+    @include('frontend.partial.select_2_restaurant')
+
+    <style>        
         .latest-product__item__pic
         {
             width: 110px !important;
