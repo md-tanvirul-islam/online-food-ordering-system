@@ -199,9 +199,9 @@
                         <div class="header__cart">
                             <ul>
                                 <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
-                                <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span class="food-count">0</span></a></li>
+                                <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-bag"></i> <span class="food-count">{{ \App\Models\Food::foodCountInSession() }}</span></a></li>
                             </ul>
-                            <div class="header__cart__price">item: <span class="food-total-price"> $0 </span></div>
+                            <div class="header__cart__price">item: <span class="food-total-price"> ${{ \App\Models\Food::foodTotalPriceInSession() }} </span></div>
                         </div>
                     </div> 
                     

@@ -65,4 +65,13 @@ class Food extends Model implements HasMedia
         }
         return 0;
     }
+
+    public static function foodImageAsItem($food_id)
+    {
+        $food = Self::find($food_id);
+
+        isset($food->getMedia('images')[0]) ? $image_url = $food->getMedia('images')[0]->getFullUrl() : $image_url = '';
+        
+        return  $image_url !== '' ? $image_url : asset('ui/frontend/img/photo_NA_110_110.png');
+    }
 }

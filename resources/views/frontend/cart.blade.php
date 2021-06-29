@@ -106,8 +106,8 @@
                         <div class="shoping__checkout">
                             <h5>Cart Total</h5>
                             <ul>
-                                <li>Subtotal <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></li>
-                                <li>Total <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></li>
+                                <li>Subtotal <span>${{ \App\Models\Food::foodTotalPriceInSession() }}</span></li>
+                                <li>Total <span>${{ \App\Models\Food::foodTotalPriceInSession() }}</span></li>
                             </ul>
                             <a href="{{ route('cart.checkout') }}" class="primary-btn">PROCEED TO CHECKOUT</a>
                         </div>

@@ -76,4 +76,9 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+    protected function redirectTo()
+    {
+        return url()->previous();
+    }
 }

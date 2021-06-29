@@ -35,47 +35,47 @@
                                 <div class="col-lg-12">
                                     <div class="checkout__input">
                                         <p>Full Name<span>*</span></p>
-                                        {{ Form::text('name',$authUser->name) }}
+                                        {{ Form::text('name',auth()->user()->name) }}
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Country<span>*</span></p>
-                                {{ Form::text('country',$authUser->profile->address->country ?? null) }}
+                                {{ Form::text('country',auth()->user()->profile->address->country ?? null) }}
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                {{ Form::text('holding_no',$authUser->profile->address->holding ?? null,['placeholder'=>'Apartment, suite, unite ect (optinal)']) }}
-                                {{ Form::text('street',$authUser->profile->address->street ?? null,['class'=>['checkout__input__add'],'placeholder'=>'Street Address']) }}
+                                {{ Form::text('holding_no',auth()->user()->profile->address->holding ?? null,['placeholder'=>'Apartment, suite, unite ect (optinal)']) }}
+                                {{ Form::text('street',auth()->user()->profile->address->street ?? null,['class'=>['checkout__input__add'],'placeholder'=>'Street Address']) }}
 
                             </div>
                             <div class="checkout__input">
                                 <p>Division<span>*</span></p>
-                                {{ Form::text('division',$authUser->profile->address->division ?? null) }}
+                                {{ Form::text('division',auth()->user()->profile->address->division ?? null) }}
                             </div>
                             <div class="checkout__input">
                                 <p>District<span>*</span></p>
-                                {{ Form::text('district',$authUser->profile->address->district ?? null) }}
+                                {{ Form::text('district',auth()->user()->profile->address->district ?? null) }}
                             </div>
                             <div class="checkout__input">
                                 <p>Thana<span>*</span></p>
-                                {{ Form::text('thana',$authUser->profile->address->thana ?? null) }}
+                                {{ Form::text('thana',auth()->user()->profile->address->thana ?? null) }}
                             </div>
                             <div class="checkout__input">
                                 <p>Postcode / ZIP<span>*</span></p>
-                                {{ Form::text('post_code',$authUser->profile->address->post_code ?? null) }}
+                                {{ Form::text('post_code',auth()->user()->profile->address->post_code ?? null) }}
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        {{ Form::text('phone',$authUser->phone) }}
+                                        {{ Form::text('phone',auth()->user()->phone) }}
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        {{ Form::text('email',$authUser->email) }}
+                                        {{ Form::text('email',auth()->user()->email) }}
                                     </div>
                                 </div>
                             </div>
@@ -155,8 +155,8 @@
                                     @empty
                                     @endforelse
                                 </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></div>
-                                <div class="checkout__order__total">Total <span>${{ \App\Models\Cart::authUserFoodTotalPrice() }}</span></div>
+                                <div class="checkout__order__subtotal">Subtotal <span>${{ \App\Models\Food::foodTotalPriceInSession() }}</span></div>
+                                <div class="checkout__order__total">Total <span>${{ \App\Models\Food::foodTotalPriceInSession() }}</span></div>
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                             </div>
                         </div>

@@ -41,11 +41,12 @@
                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                         <div class="product__discount__item">
                                             <div class="product__discount__item__pic set-bg"
-                                                data-setbg="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}">
+                                                data-setbg="{{ \App\Models\Food::foodImageAsItem($food->id) }}">
                                                 <div class="product__discount__percent">-{{ $food->discount_in_percent }}%</div>
                                                 <ul class="product__item__pic__hover">
-                                                    <li><a ><i data-food-id={{ $food->id }} class="fa fa-heart"></i></a></li>
-                                                    <li><a href="{{ route('add.to.cart',[$food->id]) }}"><i data-food-id={{ $food->id }} class="fa fa-shopping-cart cart"></i></a></li>
+                                                    
+                                                    @include('frontend.partial.buttons_on_food_items')
+
                                                 </ul>
                                             </div>
                                             <div class="product__discount__item__text">
@@ -59,10 +60,11 @@
                                     <div class="col-lg-3 col-md-4 col-sm-6">
                                         <div class="product__discount__item">
                                             <div class="product__discount__item__pic set-bg"
-                                                data-setbg="{{ $food->getFirstMediaUrl('images') !=='' ? $food->getFirstMediaUrl('images') : asset('ui/frontend/img/photo_NA_110_110.png') }}">
+                                                data-setbg="{{ \App\Models\Food::foodImageAsItem($food->id) }}">
                                                 <ul class="product__item__pic__hover">
-                                                    <li><a ><i data-food-id={{ $food->id }} class="fa fa-heart" ></i></a></li>
-                                                    <li><a href="{{ route('add.to.cart',[$food->id]) }}"><i data-food-id={{ $food->id }} class="fa fa-shopping-cart cart"></i></a></li>
+
+                                                    @include('frontend.partial.buttons_on_food_items')
+                                                    
                                                 </ul>
                                             </div>
                                             <div class="product__discount__item__text">
